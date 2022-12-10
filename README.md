@@ -206,10 +206,6 @@ To use the package in your project, follow these steps below.
 
     You can also use request.postJson(url, encodedJsonData) with jsonEncode function from 'dart:convert' library to send the submitted data without manually converting the data into JSON format one by one.
 
-## Additional Information
-
-Known bug: Expired cookies is not handled for now.
-
 ## Contributors
 
 - [Adrian Ardizza](https://github.com/Meta502)

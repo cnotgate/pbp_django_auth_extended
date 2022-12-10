@@ -1,3 +1,8 @@
+## 0.3.0
+
+- Add ability to skip expired cookies.
+- Fix logout procedure to carry out headers used before.
+
 ## 0.2.3
 
 - Fix updateCookie method.
