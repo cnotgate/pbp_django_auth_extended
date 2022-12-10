@@ -90,7 +90,7 @@ class CookieRequest {
     } else {
       loggedIn = false;
     }
-    
+
     return json.decode(response.body);
   }
 
@@ -108,7 +108,7 @@ class CookieRequest {
     http.Response response =
         await _client.get(Uri.parse(url), headers: headers);
     await _updateCookie(response);
-    
+
     return json.decode(response.body);
   }
 
@@ -122,7 +122,7 @@ class CookieRequest {
     http.Response response =
         await _client.post(Uri.parse(url), body: data, headers: headers);
     await _updateCookie(response);
-    
+
     return json.decode(response.body);
   }
 
@@ -141,7 +141,7 @@ class CookieRequest {
     // Remove used additional header
     headers.remove('Content-Type');
     await _updateCookie(response);
-    
+
     return json.decode(response.body);
   }
 
@@ -242,8 +242,9 @@ class CookieRequest {
       dynamic c = _client;
       c.withCredentials = true;
     }
-    
-    http.Response response = await _client.post(Uri.parse(url), headers: headers);
+
+    http.Response response =
+        await _client.post(Uri.parse(url), headers: headers);
 
     if (response.statusCode == 200) {
       loggedIn = false;
