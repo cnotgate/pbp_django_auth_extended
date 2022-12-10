@@ -36,6 +36,7 @@ class CookieRequest {
   }
 
   Future<dynamic> login(String url, dynamic data) async {
+    await init();
     if (kIsWeb) {
       dynamic c = _client;
       c.withCredentials = true;
@@ -52,8 +53,7 @@ class CookieRequest {
     } else {
       loggedIn = false;
     }
-
-    // Expects and returns JSON request body
+    
     return json.decode(response.body);
   }
 
@@ -62,46 +62,53 @@ class CookieRequest {
   }
 
   Future<dynamic> get(String url) async {
+    await init();
     if (kIsWeb) {
       dynamic c = _client;
       c.withCredentials = true;
     }
+
     http.Response response =
         await _client.get(Uri.parse(url), headers: headers);
     await _updateCookie(response);
-    // Expects and returns JSON request body
+    
     return json.decode(response.body);
   }
 
   Future<dynamic> post(String url, dynamic data) async {
+    await init();
     if (kIsWeb) {
       dynamic c = _client;
       c.withCredentials = true;
     }
+
     http.Response response =
         await _client.post(Uri.parse(url), body: data, headers: headers);
     await _updateCookie(response);
-    // Expects and returns JSON request body
+    
     return json.decode(response.body);
   }
 
   Future<dynamic> postJson(String url, dynamic data) async {
+    await init();
     if (kIsWeb) {
       dynamic c = _client;
       c.withCredentials = true;
     }
+
     // Add additional header
     headers['Content-Type'] = 'application/json; charset=UTF-8';
     http.Response response =
         await _client.post(Uri.parse(url), body: data, headers: headers);
+
     // Remove used additional header
     headers.remove('Content-Type');
     await _updateCookie(response);
-    return json.decode(response.body); // Expects and returns JSON request body
+    
+    return json.decode(response.body);
   }
 
   Future _updateCookie(http.Response response) async {
-    // Solves LateInitializationError
     await init();
 
     String? allSetCookie = response.headers['set-cookie'];
@@ -151,10 +158,12 @@ class CookieRequest {
   }
 
   Future<dynamic> logout(String url) async {
+    await init();
     if (kIsWeb) {
       dynamic c = _client;
       c.withCredentials = true;
     }
+    
     http.Response response = await _client.post(Uri.parse(url), headers: headers);
 
     if (response.statusCode == 200) {
