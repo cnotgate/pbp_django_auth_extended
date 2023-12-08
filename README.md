@@ -11,9 +11,11 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-# pbp_django_auth
+# pbp_django_auth_extended
 
+Forked from pbp_django_auth.
 A Flutter package for helping students to implement authentication from Django web service in Flutter.
+This forked (extended) package adds support for AnonymousUser checking to prevent `loggedIn` attribute being set to true when not logged in.
 
 <!--## Features
 
@@ -78,7 +80,17 @@ To use the package, you need to make asynchronous JavaScript (AJAX) login view i
             }, status=401)
     ```
 
-This view will set cookies to the user and allow authenticated requests with `@login_required` decorator.
+    This view will set cookies to the user and allow authenticated requests with `@login_required` decorator.
+
+10. Create a check_is_anonymous view method in `authentication/views.py`.
+
+    ```python
+    def check_is_anonymous(request):
+      print(request.user.is_anonymous)
+      return JsonResponse({
+          "anonymous": request.user.is_anonymous
+      }, status=200)
+    ```
 
 ### Flutter's Part
 
@@ -212,6 +224,7 @@ To use the package in your project, follow these steps below.
 - [Muhammad Athallah](https://github.com/determinedguy)
 - [Sabyna Maharani](https://github.com/sabynn)
 - [Rendy](https://github.com/rorre)
+- [Ahmad Fatih Faizi](https://github.com/cnotgate)
 
 <!--
 https://blog.logrocket.com/how-to-create-dart-packages-for-flutter/

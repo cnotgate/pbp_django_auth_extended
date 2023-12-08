@@ -1,3 +1,15 @@
+## 0.4.1
+
+- Supports checking if user is AnonymousUser in init
+
+## 0.3.3
+
+- Change http version requirement.
+
+## 0.3.2
+
+- Fork from pbp_django_auth.
+
 ## 0.3.1
 
 - Migrate repository to PBP Fasilkom UI organisation.

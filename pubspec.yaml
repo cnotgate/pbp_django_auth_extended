@@ -1,9 +1,9 @@
 # To publish the package, use `flutter pub publish` command.
 
-name: pbp_django_auth
-description: A Flutter package for helping students to implement authentication from Django web service in Flutter.
-version: 0.3.1
-repository: https://github.com/pbp-fasilkom-ui/pbp_django_auth
+name: pbp_django_auth_extended
+description: A fork from pbp_django_auth Flutter package with additional features.
+version: 0.4.1
+repository: https://github.com/cnotgate/pbp_django_auth_extended
 
 environment:
   sdk: '>=2.18.4 <3.0.0'
@@ -12,7 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.5
+  http: ^1.1.0
   shared_preferences: ^2.0.15
 
 dev_dependencies:

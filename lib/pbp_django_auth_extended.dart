@@ -1,4 +1,4 @@
-library pbp_django_auth;
+library pbp_django_auth_extended;
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -25,10 +25,14 @@ class Cookie {
 }
 
 class CookieRequest {
+  CookieRequest({required this.baseUrl});
+
   Map<String, String> headers = {};
   Map<String, Cookie> cookies = {};
   Map<String, dynamic> jsonData = {};
   final http.Client _client = http.Client();
+
+  final String baseUrl;
 
   late SharedPreferences local;
 
@@ -40,8 +44,12 @@ class CookieRequest {
       local = await SharedPreferences.getInstance();
       cookies = _loadSharedPrefs();
       if (cookies['sessionid'] != null) {
-        loggedIn = true;
         headers['cookie'] = _generateCookieHeader();
+      }
+      initialized = true;
+      var response = await this.get("$baseUrl/authentication/is-anonymous/");
+      if (response['anonymous'] == false) {
+        loggedIn = true;
       }
     }
     initialized = true;
@@ -100,6 +108,7 @@ class CookieRequest {
 
   Future<dynamic> get(String url) async {
     await init();
+
     if (kIsWeb) {
       dynamic c = _client;
       c.withCredentials = true;
