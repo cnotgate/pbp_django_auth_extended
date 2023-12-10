@@ -1,3 +1,7 @@
+## 0.5.2
+
+- QOL update
+
 ## 0.5.1
 
 - Fix bug causing double concatenation on fetch

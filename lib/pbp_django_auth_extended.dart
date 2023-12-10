@@ -47,7 +47,7 @@ class CookieRequest {
         headers['cookie'] = _generateCookieHeader();
       }
       initialized = true;
-      var response = await get("$baseUrl/authentication/is-anonymous/");
+      var response = await get("/authentication/is-anonymous/");
       if (response['anonymous'] == false) {
         loggedIn = true;
       }
