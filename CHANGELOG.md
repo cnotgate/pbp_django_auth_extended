@@ -1,19 +1,23 @@
+## 0.5.3
+
+- Update documentation.
+
 ## 0.5.2
 
-- QOL update
+- QOL update.
 
 ## 0.5.1
 
-- Fix bug causing double concatenation on fetch
+- Fix bug causing double concatenation on fetch.
 
 ## 0.5.0
 
-- Add ability to provide baseUrl on create
-- All requests now will use baseUrl as suffix to request URL
+- Add ability to provide baseUrl on create.
+- All requests now will use baseUrl as suffix to request URL.
 
 ## 0.4.1
 
-- Supports checking if user is AnonymousUser in init
+- Supports checking if user is AnonymousUser in init.
 
 ## 0.3.3
 

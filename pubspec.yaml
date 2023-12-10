@@ -2,7 +2,7 @@
 
 name: pbp_django_auth_extended
 description: A fork from pbp_django_auth Flutter package with additional features.
-version: 0.5.2
+version: 0.5.3
 repository: https://github.com/cnotgate/pbp_django_auth_extended
 
 environment:
