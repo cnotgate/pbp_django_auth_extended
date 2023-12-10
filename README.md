@@ -15,7 +15,7 @@ and the Flutter guide for
 
 Forked from pbp_django_auth.
 A Flutter package for helping students to implement authentication from Django web service in Flutter.
-This forked (extended) package adds support for AnonymousUser checking to prevent `loggedIn` attribute being set to true when not logged in.
+This forked (extended) package adds features that is not present in pbp_django_auth packages.
 
 <!--## Features
 
@@ -92,6 +92,12 @@ To use the package, you need to make asynchronous JavaScript (AJAX) login view i
       }, status=200)
     ```
 
+11. Add url to `authentication/urls.py`
+
+    ```python
+    path('is-anonymous/', check_is_anonymous, name='check_is_anonymous'),
+    ```
+
 ### Flutter's Part
 
 To use the package, modify application root widget to provide the `CookieRequest` library to all child widgets by using `Provider`.
@@ -128,7 +134,7 @@ class MyApp extends StatelessWidget {
     Widget build(BuildContext context) {
         return Provider(
             create: (_) {
-                CookieRequest request = CookieRequest();
+                CookieRequest request = CookieRequest(baseUrl: <DJANGO BASE URL>); // DO NOT use trailing '/' here
                 return request;
             },
             child: MaterialApp(
@@ -189,7 +195,7 @@ To use the package in your project, follow these steps below.
 
     ```dart
       // 'username' and 'password' should be the values of the user login form.
-      final response = await request.login("<DJANGO URL>/auth/login", {
+      final response = await request.login("/auth/login", {
         'username': username,
         'password': password1,
       });
@@ -204,11 +210,11 @@ To use the package in your project, follow these steps below.
 
     ```dart
     /* GET request example: */
-    final response = await request.get(<URL TO ACCESS>);
+    final response = await request.get(<PATH TO ACCESS (DO NOT INCLUDE BASE URL)>);
     // The returned response will be a Map object with the keys of the JsonResponse
     
     /* POST request example: */
-    final response = await request.post(<URL TO ACCESS>, {
+    final response = await request.post(<PATH TO ACCESS (DO NOT INCLUDE BASE URL)>, {
       "data1": "THIS IS EXAMPLE DATA",
       "data2": "THIS IS EXAMPLE DATA 2",
     });
