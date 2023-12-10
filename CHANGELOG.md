@@ -1,3 +1,7 @@
+## 0.5.1
+
+- Fix bug causing double concatenation on fetch
+
 ## 0.5.0
 
 - Add ability to provide baseUrl on create

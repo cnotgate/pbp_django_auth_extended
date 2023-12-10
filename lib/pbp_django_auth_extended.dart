@@ -47,7 +47,7 @@ class CookieRequest {
         headers['cookie'] = _generateCookieHeader();
       }
       initialized = true;
-      var response = await this.get("$baseUrl/authentication/is-anonymous/");
+      var response = await get("$baseUrl/authentication/is-anonymous/");
       if (response['anonymous'] == false) {
         loggedIn = true;
       }
@@ -87,8 +87,8 @@ class CookieRequest {
       c.withCredentials = true;
     }
 
-    http.Response response =
-        await _client.post(Uri.parse(baseUrl + path), body: data, headers: headers);
+    http.Response response = await _client.post(Uri.parse(baseUrl + path),
+        body: data, headers: headers);
 
     await _updateCookie(response);
 
@@ -128,8 +128,8 @@ class CookieRequest {
       c.withCredentials = true;
     }
 
-    http.Response response =
-        await _client.post(Uri.parse(baseUrl + path), body: data, headers: headers);
+    http.Response response = await _client.post(Uri.parse(baseUrl + path),
+        body: data, headers: headers);
     await _updateCookie(response);
 
     return json.decode(response.body);
@@ -144,8 +144,8 @@ class CookieRequest {
 
     // Add additional header
     headers['Content-Type'] = 'application/json; charset=UTF-8';
-    http.Response response =
-        await _client.post(Uri.parse(baseUrl + path), body: data, headers: headers);
+    http.Response response = await _client.post(Uri.parse(baseUrl + path),
+        body: data, headers: headers);
 
     // Remove used additional header
     headers.remove('Content-Type');
