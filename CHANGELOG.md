@@ -1,3 +1,8 @@
+## 0.5.0
+
+- Add ability to provide baseUrl on create
+- All requests now will use baseUrl as suffix to request URL
+
 ## 0.4.1
 
 - Supports checking if user is AnonymousUser in init

@@ -80,7 +80,7 @@ class CookieRequest {
     local.setString("cookies", cookies);
   }
 
-  Future<dynamic> login(String url, dynamic data) async {
+  Future<dynamic> login(String path, dynamic data) async {
     await init();
     if (kIsWeb) {
       dynamic c = _client;
@@ -88,7 +88,7 @@ class CookieRequest {
     }
 
     http.Response response =
-        await _client.post(Uri.parse(url), body: data, headers: headers);
+        await _client.post(Uri.parse(baseUrl + path), body: data, headers: headers);
 
     await _updateCookie(response);
 
@@ -106,7 +106,7 @@ class CookieRequest {
     return jsonData;
   }
 
-  Future<dynamic> get(String url) async {
+  Future<dynamic> get(String path) async {
     await init();
 
     if (kIsWeb) {
@@ -115,13 +115,13 @@ class CookieRequest {
     }
 
     http.Response response =
-        await _client.get(Uri.parse(url), headers: headers);
+        await _client.get(Uri.parse(baseUrl + path), headers: headers);
     await _updateCookie(response);
 
     return json.decode(response.body);
   }
 
-  Future<dynamic> post(String url, dynamic data) async {
+  Future<dynamic> post(String path, dynamic data) async {
     await init();
     if (kIsWeb) {
       dynamic c = _client;
@@ -129,13 +129,13 @@ class CookieRequest {
     }
 
     http.Response response =
-        await _client.post(Uri.parse(url), body: data, headers: headers);
+        await _client.post(Uri.parse(baseUrl + path), body: data, headers: headers);
     await _updateCookie(response);
 
     return json.decode(response.body);
   }
 
-  Future<dynamic> postJson(String url, dynamic data) async {
+  Future<dynamic> postJson(String path, dynamic data) async {
     await init();
     if (kIsWeb) {
       dynamic c = _client;
@@ -145,7 +145,7 @@ class CookieRequest {
     // Add additional header
     headers['Content-Type'] = 'application/json; charset=UTF-8';
     http.Response response =
-        await _client.post(Uri.parse(url), body: data, headers: headers);
+        await _client.post(Uri.parse(baseUrl + path), body: data, headers: headers);
 
     // Remove used additional header
     headers.remove('Content-Type');
@@ -245,7 +245,7 @@ class CookieRequest {
     return cookie;
   }
 
-  Future<dynamic> logout(String url) async {
+  Future<dynamic> logout(String path) async {
     await init();
     if (kIsWeb) {
       dynamic c = _client;
@@ -253,7 +253,7 @@ class CookieRequest {
     }
 
     http.Response response =
-        await _client.post(Uri.parse(url), headers: headers);
+        await _client.post(Uri.parse(baseUrl + path), headers: headers);
 
     if (response.statusCode == 200) {
       loggedIn = false;
